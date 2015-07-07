@@ -239,18 +239,25 @@ if(!empty($_FILES['tagfile']['tmp_name'])){
 <form method="post" enctype="multipart/form-data">
 タグ付きtxtファイル
 <input type="file" name="tagfile" accept="text/kra,text/txt,text/lyc" />
-開始前表示時間(msec)
+<br>開始前表示時間(msec)
 <input type="text" size="8" name="before_msec" value="1000" />
 終了後表示時間(msec)
 <input type="text" size="8" name="after_msec" value="1000" />
 
-<br>付与タグ
-<input type="text" size="512" name="tagformat" value="Dialogue: 110,0:%02d:%02d.%02d,0:%02d:%02d.%02d,Kanji1,,0000,0000,0000,Karaoke,{\\q2}{\\pos(285,450)}{\\fad(1000,1000)}{\\org(10000,450)}{\\fr361}{\\t(0,1000,\\fr360.1)}{\\t(1000,%d,\\fr359.9)}{\\t(%d,%d,\\fr359)}%s\n" />
-
+<br>付与タグ (現在編集不可)
+<textarea name="tagformat" style="width:90%" readonly >
+Dialogue: 110,0:%02d:%02d.%02d,0:%02d:%02d.%02d,Kanji1,,0000,0000,0000,Karaoke,{\\q2}{\\pos(285,450)}{\\fad(1000,1000)}{\\org(10000,450)}{\\fr361}{\\t(0,1000,\\fr360.1)}{\\t(1000,%d,\\fr359.9)}{\\t(%d,%d,\\fr359)}%s\n
+</textarea>
+<br />
 <input type="submit" value="Send" />  
 </form>
 
-<pre>
+<hr />
+
+結果<br />
+
+
+<textarea style="width:90%;height:80%" wrap="off" >
 <?php
 if(!empty($taginfo)){
 //var_dump($taginfo);
@@ -259,7 +266,7 @@ foreach ($taginfo as $taginfoline){
 }
 }
 ?>
-</pre>
+</textarea >
 
 </body>
 </html>
