@@ -19,7 +19,7 @@
   }
 
   header('Content-Type: application/octet-stream');
-  header('Content-Disposition: attachment; filename='.html_entity_decode($filename));
+  header('Content-Disposition: attachment; filename="'.html_entity_decode($filename).'"');
   
   $stream = fopen('php://output', 'w');
   fwrite($stream, $data);
