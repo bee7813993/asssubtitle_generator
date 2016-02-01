@@ -298,6 +298,7 @@ function mod_event($ass_structs, $stylename, $event_struct ){
     return $ass_structs;
 }
 
+if(php_sapi_name()=='cli') {  // コマンドライン
 
 // とりあえず argv[1]のファイル名の2重縁、縁ワイプ、ワイプ前文字ないブラシ用maskに対応した3つのassを出力するように作成する。
 
@@ -313,7 +314,7 @@ $assfile=file_get_contents($filename);
 $ass_structs=analyze_ass($assfile);
 
 
-// ワイプ二重縁生成
+//******************** ワイプ二重縁生成
 $tmp_ass_structs = copy_style($ass_structs, 'songInfo2' , 'songInfo2_uti');
 $tmp_ass_structs = copy_event($tmp_ass_structs, ' songInfo2' , 'songInfo2_uti');
 $tmp_ass_structs = copy_style($tmp_ass_structs, 'songInfo1' , 'songInfo1_uti');
@@ -324,6 +325,8 @@ $tmp_ass_structs = copy_style($tmp_ass_structs, 'Kanji1' , 'Kanji1_uti');
 $tmp_ass_structs = copy_event($tmp_ass_structs, ' Kanji1' , 'Kanji1_uti');
 $tmp_ass_structs = copy_style($tmp_ass_structs, 'Ruby1' , 'Ruby1_uti');
 $tmp_ass_structs = copy_event($tmp_ass_structs, ' Ruby1' , 'Ruby1_uti');
+$tmp_ass_structs = copy_style($tmp_ass_structs, 'whosing1' , 'whosing1_uti');
+$tmp_ass_structs = copy_event($tmp_ass_structs, ' whosing1' , 'whosing1_uti');
 
 $beforewp_color = '&H00FFFFFF';
 $beforewpfuti_color = '&H00253378';
@@ -353,6 +356,7 @@ $changestyle = array (
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'Ruby1_uti' , $changestyle);
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'songInfo2_uti' , $changestyle);
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'songInfo_uti' , $changestyle);
+$tmp_ass_structs = mod_style($tmp_ass_structs, 'whosing1_uti' , $changestyle);
 
 $changestyle = array (
     'PrimaryColour' => $beforewp_color,
@@ -363,7 +367,7 @@ $changestyle = array (
     'Shadow' => '0'
     );
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'Kanji1' , $changestyle);
-$tmp_ass_structs = mod_style($tmp_ass_structs, 'songInfo1_uti' , $changestyle);
+$tmp_ass_structs = mod_style($tmp_ass_structs, 'songInfo1' , $changestyle);
 $changestyle = array (
     'PrimaryColour' => $beforewp_color,
     'SecondaryColour' => $beforewp_color,
@@ -375,19 +379,21 @@ $changestyle = array (
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'Ruby1' , $changestyle);
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'songInfo2' , $changestyle);
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'songInfo' , $changestyle);
+$tmp_ass_structs = mod_style($tmp_ass_structs, 'whosing1' , $changestyle);
 
 $tmp_ass_structs = mod_event_text($tmp_ass_structs, 'Kanji1' , '/^/' , '{\\blur4}');
 $tmp_ass_structs = mod_event_text($tmp_ass_structs, 'Ruby1' , '/^/' , '{\\blur4}');
 $tmp_ass_structs = mod_event_text($tmp_ass_structs, 'songInfo1' , '/^/' , '{\\blur4}');
 $tmp_ass_structs = mod_event_text($tmp_ass_structs, 'songInfo2' , '/^/' , '{\\blur4}');
 $tmp_ass_structs = mod_event_text($tmp_ass_structs, 'songInfo' , '/^/' , '{\\blur4}');
+$tmp_ass_structs = mod_event_text($tmp_ass_structs, 'whosing1' , '/^/' , '{\\blur4}');
 
 $tmp_ass_structs = mod_event($tmp_ass_structs, 'Ruby1_uti' , array('Layer' => '120'));
 
 $ass_structs_clip = $tmp_ass_structs;
 $outbuf_clip = outputass($ass_structs_clip);
 
-// ワイプ後部分ass生成
+//****************** ワイプ後部分ass生成
 $beforewp_color = '&H00253378';
 $beforewpfuti_color = '&H00253378';
 $beforewpshadow_color = '&H00FFFFFF';
@@ -396,9 +402,9 @@ $beforewpsotofuti_color = '&H00F8E3FF';
 $changestyle = array (
     'PrimaryColour' => $beforewp_color,
     'SecondaryColour' => $beforewp_color,
-    'OutlineColour' => $beforewpfuti_color,
+    'OutlineColour' => $beforewpshadow_color,
     'BackColour' => $beforewpshadow_color,
-    'Outline' => '4',
+    'Outline' => '6',
     'Shadow' => '1'
     );
     
@@ -407,14 +413,15 @@ $tmp_ass_structs = mod_style($tmp_ass_structs, 'songInfo1_uti' , $changestyle);
 $changestyle = array (
     'PrimaryColour' => $beforewp_color,
     'SecondaryColour' => $beforewp_color,
-    'OutlineColour' => $beforewpfuti_color,
+    'OutlineColour' => $beforewpshadow_color,
     'BackColour' => $beforewpshadow_color,
-    'Outline' => '3',
+    'Outline' => '4',
     'Shadow' => '1'
     );
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'Ruby1_uti' , $changestyle);
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'songInfo2_uti' , $changestyle);
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'songInfo_uti' , $changestyle);
+$tmp_ass_structs = mod_style($tmp_ass_structs, 'whosing1_uti' , $changestyle);
 
 $changestyle = array (
     'PrimaryColour' => $beforewp_color,
@@ -437,12 +444,23 @@ $changestyle = array (
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'Ruby1' , $changestyle);
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'songInfo2' , $changestyle);
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'songInfo' , $changestyle);
+$tmp_ass_structs = mod_style($tmp_ass_structs, 'whosing1' , $changestyle);
 
 $preg = '/{\\\\t\(\d{1,},\d{1,},\\\\clip.+?\\\\clip.+?}/';
-$new_ass_structs=mod_event_text($ass_structs, 'Kanji1' , $preg , '');
-$new_ass_structs=mod_event_text($ass_structs, 'Ruby1' , $preg , '');
-$new_ass_structs=mod_event_text($ass_structs, 'Kanji1_uti' , $preg , '');
-$new_ass_structs=mod_event_text($ass_structs, 'Ruby1_uti' , $preg , '');
+$tmp_ass_structs=mod_event_text($tmp_ass_structs, 'Kanji1' , $preg , '');
+$tmp_ass_structs=mod_event_text($tmp_ass_structs, 'Ruby1' , $preg , '');
+$tmp_ass_structs=mod_event_text($tmp_ass_structs, 'Kanji1_uti' , $preg , '');
+$tmp_ass_structs=mod_event_text($tmp_ass_structs, 'Ruby1_uti' , $preg , '');
+
+$tmp_ass_structs = mod_event($tmp_ass_structs, 'songInfo1' , array('Format' => 'Comment'));
+$tmp_ass_structs = mod_event($tmp_ass_structs, 'songInfo2' , array('Format' => 'Comment'));
+$tmp_ass_structs = mod_event($tmp_ass_structs, 'songInfo' , array('Format' => 'Comment'));
+$tmp_ass_structs = mod_event($tmp_ass_structs, 'songInfo2_uti' , array('Format' => 'Comment'));
+$tmp_ass_structs = mod_event($tmp_ass_structs, 'songInfo1_uti' , array('Format' => 'Comment'));
+$tmp_ass_structs = mod_event($tmp_ass_structs, 'songInfo_uti' , array('Format' => 'Comment'));
+$tmp_ass_structs = mod_event($tmp_ass_structs, 'whosing1_uti' , array('Format' => 'Comment'));
+$tmp_ass_structs = mod_event($tmp_ass_structs, 'whosing1' , array('Format' => 'Comment'));
+
 
 $ass_structs_base = $tmp_ass_structs;
 $outbuf_base = outputass($ass_structs_base);
@@ -450,13 +468,13 @@ $outbuf_base = outputass($ass_structs_base);
 // mask用ass生成
 $beforewp_color = '&H00FFFFFF';
 $beforewpfuti_color = '&H00000000';
-$beforewpshadow_color = '&H00000000';
-$beforewpsotofuti_color = '&H00FFFFFF';
+$beforewpshadow_color = '&H00FFFFFF';
+$beforewpsotofuti_color = '&H00000000';
 $changestyle = array (
     'PrimaryColour' => $beforewp_color,
     'SecondaryColour' => $beforewp_color,
     'OutlineColour' => $beforewpsotofuti_color,
-    'BackColour' => $beforewpsotofuti_color,
+    'BackColour' => $beforewpshadow_color,
     'Outline' => '1',
     'Shadow' => '0'
     );
@@ -465,6 +483,7 @@ $tmp_ass_structs = mod_style($tmp_ass_structs, 'Ruby1' , $changestyle);
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'songInfo1' , $changestyle);
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'songInfo2' , $changestyle);
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'songInfo' , $changestyle);
+$tmp_ass_structs = mod_style($tmp_ass_structs, 'whosing1' , $changestyle);
 
 $ass_structs_mask = $tmp_ass_structs;
 $outbuf_mask = outputass($ass_structs_mask);
@@ -494,5 +513,5 @@ file_put_contents($assbasename."_mask.ass", $outbuf_mask);
 
 //mb_convert_variables("SJIS-win","UTF-8",$ass_structs);
 //var_dump(get_stylelist($ass_structs));
-
+}
 ?>
