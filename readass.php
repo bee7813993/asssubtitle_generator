@@ -298,6 +298,21 @@ function mod_event($ass_structs, $stylename, $event_struct ){
     return $ass_structs;
 }
 
+
+/***
+memo ass変更情報
+
+struct modassinfo {
+    struct targetstyle['stylename']
+}
+
+対象となるStyle ['stylename']
+-> [重数]-> { p_color, sec_coler, { OutlineColor, size} , {ShadowColer, size} , additional_tag}
+
+
+
+***/
+
 if(php_sapi_name()=='cli') {  // コマンドライン
 
 // とりあえず argv[1]のファイル名の2重縁、縁ワイプ、ワイプ前文字ないブラシ用maskに対応した3つのassを出力するように作成する。

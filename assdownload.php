@@ -22,6 +22,7 @@
   header('Content-Disposition: attachment; filename="'.html_entity_decode($filename).'"');
   
   $stream = fopen('php://output', 'w');
+  fwrite($fp, pack('C*',0xEF,0xBB,0xBF));//BOM‘‚«ž‚Ý
   fwrite($stream, $data);
 
 ?>
