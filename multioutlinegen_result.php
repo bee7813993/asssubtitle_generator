@@ -76,6 +76,14 @@ $tmp_ass_structs = copy_style($tmp_ass_structs, 'Kanji1' , 'Kanji1_uti');
 $tmp_ass_structs = copy_event($tmp_ass_structs, ' Kanji1' , 'Kanji1_uti');
 $tmp_ass_structs = copy_style($tmp_ass_structs, 'Ruby1' , 'Ruby1_uti');
 $tmp_ass_structs = copy_event($tmp_ass_structs, ' Ruby1' , 'Ruby1_uti');
+$tmp_ass_structs = copy_style($tmp_ass_structs, 'Kanji2' , 'Kanji2_uti');
+$tmp_ass_structs = copy_event($tmp_ass_structs, ' Kanji2' , 'Kanji2_uti');
+$tmp_ass_structs = copy_style($tmp_ass_structs, 'Ruby2' , 'Ruby2_uti');
+$tmp_ass_structs = copy_event($tmp_ass_structs, ' Ruby2' , 'Ruby2_uti');
+$tmp_ass_structs = copy_style($tmp_ass_structs, 'Kanji3' , 'Kanji3_uti');
+$tmp_ass_structs = copy_event($tmp_ass_structs, ' Kanji3' , 'Kanji3_uti');
+$tmp_ass_structs = copy_style($tmp_ass_structs, 'Ruby3' , 'Ruby3_uti');
+$tmp_ass_structs = copy_event($tmp_ass_structs, ' Ruby3' , 'Ruby3_uti');
 $tmp_ass_structs = copy_style($tmp_ass_structs, 'whosing1' , 'whosing1_uti');
 $tmp_ass_structs = copy_event($tmp_ass_structs, ' whosing1' , 'whosing1_uti');
 
@@ -97,6 +105,8 @@ $changestyle = array (
 
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'Kanji1_uti' , $changestyle);
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'songInfo1_uti' , $changestyle);
+$tmp_ass_structs = mod_style($tmp_ass_structs, 'Kanji2_uti' , $changestyle);
+$tmp_ass_structs = mod_style($tmp_ass_structs, 'Kanji3_uti' , $changestyle);
 
 //内縁： ルビ、曲情報曲名以外、曲中曲情報
 $changestyle = array (
@@ -109,6 +119,8 @@ $changestyle = array (
     );
 
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'Ruby1_uti' , $changestyle);
+$tmp_ass_structs = mod_style($tmp_ass_structs, 'Ruby2_uti' , $changestyle);
+$tmp_ass_structs = mod_style($tmp_ass_structs, 'Ruby3_uti' , $changestyle);
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'songInfo2_uti' , $changestyle);
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'songInfo_uti' , $changestyle);
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'whosing1_uti' , $changestyle);
@@ -124,6 +136,8 @@ $changestyle = array (
     );
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'Kanji1' , $changestyle);
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'songInfo1' , $changestyle);
+$tmp_ass_structs = mod_style($tmp_ass_structs, 'Kanji2' , $changestyle);
+$tmp_ass_structs = mod_style($tmp_ass_structs, 'Kanji3' , $changestyle);
 
 //外縁： ルビ、曲情報曲名以外、曲中曲情報
 $changestyle = array (
@@ -135,6 +149,8 @@ $changestyle = array (
     'Shadow' => '0'
     );
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'Ruby1' , $changestyle);
+$tmp_ass_structs = mod_style($tmp_ass_structs, 'Ruby2' , $changestyle);
+$tmp_ass_structs = mod_style($tmp_ass_structs, 'Ruby3' , $changestyle);
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'songInfo2' , $changestyle);
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'songInfo' , $changestyle);
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'whosing1' , $changestyle);
@@ -142,6 +158,10 @@ $tmp_ass_structs = mod_style($tmp_ass_structs, 'whosing1' , $changestyle);
 //外縁ブラー化
 $tmp_ass_structs = mod_event_text($tmp_ass_structs, 'Kanji1' , '/^/' , '{\\blur4}');
 $tmp_ass_structs = mod_event_text($tmp_ass_structs, 'Ruby1' , '/^/' , '{\\blur4}');
+$tmp_ass_structs = mod_event_text($tmp_ass_structs, 'Kanji2' , '/^/' , '{\\blur4}');
+$tmp_ass_structs = mod_event_text($tmp_ass_structs, 'Ruby2' , '/^/' , '{\\blur4}');
+$tmp_ass_structs = mod_event_text($tmp_ass_structs, 'Kanji3' , '/^/' , '{\\blur4}');
+$tmp_ass_structs = mod_event_text($tmp_ass_structs, 'Ruby3' , '/^/' , '{\\blur4}');
 $tmp_ass_structs = mod_event_text($tmp_ass_structs, 'songInfo1' , '/^/' , '{\\blur4}');
 $tmp_ass_structs = mod_event_text($tmp_ass_structs, 'songInfo2' , '/^/' , '{\\blur4}');
 $tmp_ass_structs = mod_event_text($tmp_ass_structs, 'songInfo' , '/^/' , '{\\blur4}');
@@ -149,6 +169,8 @@ $tmp_ass_structs = mod_event_text($tmp_ass_structs, 'whosing1' , '/^/' , '{\\blu
 
 // 内縁ルビLayer変更
 $tmp_ass_structs = mod_event($tmp_ass_structs, 'Ruby1_uti' , array('Layer' => '120'));
+$tmp_ass_structs = mod_event($tmp_ass_structs, 'Ruby2_uti' , array('Layer' => '120'));
+$tmp_ass_structs = mod_event($tmp_ass_structs, 'Ruby3_uti' , array('Layer' => '120'));
 
 $ass_structs_clip = $tmp_ass_structs;   // 確定
 $outbuf_clip = outputass($ass_structs_clip);
@@ -170,6 +192,8 @@ $changestyle = array (
     );
     
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'Kanji1_uti' , $changestyle);
+$tmp_ass_structs = mod_style($tmp_ass_structs, 'Kanji2_uti' , $changestyle);
+$tmp_ass_structs = mod_style($tmp_ass_structs, 'Kanji3_uti' , $changestyle);
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'songInfo1_uti' , $changestyle);
 $changestyle = array (
     'PrimaryColour' => $beforewp_color,
@@ -180,6 +204,8 @@ $changestyle = array (
     'Shadow' => '1'
     );
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'Ruby1_uti' , $changestyle);
+$tmp_ass_structs = mod_style($tmp_ass_structs, 'Ruby2_uti' , $changestyle);
+$tmp_ass_structs = mod_style($tmp_ass_structs, 'Ruby3_uti' , $changestyle);
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'songInfo2_uti' , $changestyle);
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'songInfo_uti' , $changestyle);
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'whosing1_uti' , $changestyle);
@@ -193,6 +219,8 @@ $changestyle = array (
     'Shadow' => '0'
     );
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'Kanji1' , $changestyle);
+$tmp_ass_structs = mod_style($tmp_ass_structs, 'Kanji2' , $changestyle);
+$tmp_ass_structs = mod_style($tmp_ass_structs, 'Kanji3' , $changestyle);
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'songInfo1' , $changestyle);
 $changestyle = array (
     'PrimaryColour' => $beforewp_color,
@@ -203,6 +231,8 @@ $changestyle = array (
     'Shadow' => '0'
     );
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'Ruby1' , $changestyle);
+$tmp_ass_structs = mod_style($tmp_ass_structs, 'Ruby2' , $changestyle);
+$tmp_ass_structs = mod_style($tmp_ass_structs, 'Ruby3' , $changestyle);
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'songInfo2' , $changestyle);
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'songInfo' , $changestyle);
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'whosing1' , $changestyle);
@@ -210,8 +240,16 @@ $tmp_ass_structs = mod_style($tmp_ass_structs, 'whosing1' , $changestyle);
 $preg = '/{\\\\t\(\d{1,},\d{1,},\\\\clip.+?\\\\clip.+?}/';
 $tmp_ass_structs=mod_event_text($tmp_ass_structs, 'Kanji1' , $preg , '');
 $tmp_ass_structs=mod_event_text($tmp_ass_structs, 'Ruby1' , $preg , '');
+$tmp_ass_structs=mod_event_text($tmp_ass_structs, 'Kanji2' , $preg , '');
+$tmp_ass_structs=mod_event_text($tmp_ass_structs, 'Ruby2' , $preg , '');
+$tmp_ass_structs=mod_event_text($tmp_ass_structs, 'Kanji3' , $preg , '');
+$tmp_ass_structs=mod_event_text($tmp_ass_structs, 'Ruby3' , $preg , '');
 $tmp_ass_structs=mod_event_text($tmp_ass_structs, 'Kanji1_uti' , $preg , '');
 $tmp_ass_structs=mod_event_text($tmp_ass_structs, 'Ruby1_uti' , $preg , '');
+$tmp_ass_structs=mod_event_text($tmp_ass_structs, 'Kanji2_uti' , $preg , '');
+$tmp_ass_structs=mod_event_text($tmp_ass_structs, 'Ruby2_uti' , $preg , '');
+$tmp_ass_structs=mod_event_text($tmp_ass_structs, 'Kanji3_uti' , $preg , '');
+$tmp_ass_structs=mod_event_text($tmp_ass_structs, 'Ruby3_uti' , $preg , '');
 
 $tmp_ass_structs = mod_event($tmp_ass_structs, 'songInfo1' , array('Format' => 'Comment'));
 $tmp_ass_structs = mod_event($tmp_ass_structs, 'songInfo2' , array('Format' => 'Comment'));
@@ -241,6 +279,10 @@ $changestyle = array (
     );
 $tmp_ass_structs = mod_style($ass_structs, 'Kanji1' , $changestyle);
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'Ruby1' , $changestyle);
+$tmp_ass_structs = mod_style($ass_structs, 'Kanji2' , $changestyle);
+$tmp_ass_structs = mod_style($tmp_ass_structs, 'Ruby2' , $changestyle);
+$tmp_ass_structs = mod_style($ass_structs, 'Kanji3' , $changestyle);
+$tmp_ass_structs = mod_style($tmp_ass_structs, 'Ruby3' , $changestyle);
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'songInfo1' , $changestyle);
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'songInfo2' , $changestyle);
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'songInfo' , $changestyle);
@@ -275,7 +317,7 @@ if(!empty($outbuf_clip)){
     print '<div class="form-group">';
     print '    <input type="hidden" name="filename" value="'.$fn.'" />';
     print '    <input type="hidden" name="data" value="'.htmlentities($outbuf_clip).'" />';
-    print '    <button type="submit" class="btn btn-default">Wipe後base部ダウンロード</button>';
+    print '    <button type="submit" class="btn btn-default">Wipe前Clip部ダウンロード</button>';
     print '</div>';
     print '</form>';
 }
