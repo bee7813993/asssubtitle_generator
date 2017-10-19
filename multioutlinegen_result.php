@@ -279,9 +279,9 @@ $changestyle = array (
     );
 $tmp_ass_structs = mod_style($ass_structs, 'Kanji1' , $changestyle);
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'Ruby1' , $changestyle);
-$tmp_ass_structs = mod_style($ass_structs, 'Kanji2' , $changestyle);
+$tmp_ass_structs = mod_style($tmp_ass_structs, 'Kanji2' , $changestyle);
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'Ruby2' , $changestyle);
-$tmp_ass_structs = mod_style($ass_structs, 'Kanji3' , $changestyle);
+$tmp_ass_structs = mod_style($tmp_ass_structs, 'Kanji3' , $changestyle);
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'Ruby3' , $changestyle);
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'songInfo1' , $changestyle);
 $tmp_ass_structs = mod_style($tmp_ass_structs, 'songInfo2' , $changestyle);
