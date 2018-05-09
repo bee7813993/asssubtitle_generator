@@ -164,7 +164,7 @@ function outputass($ass_struct){
 function get_sectionlist($ass_structs){
     
     $sectionlist = array();
-    
+//    var_dump($ass_structs); 
     foreach($ass_structs as $key => $value){
         $sectionlist[] = $key;
     }
@@ -220,24 +220,26 @@ function copy_style($ass_structs, $fromstylename ,$tostylename){
 }
 
 function mod_style($ass_structs, $stylename, $style_struct ){
-    
+    // print " mod_style(ass_structs, $stylename , style_struct)";
     $newstyle = array();
     $stylesectionname=get_stylesection($ass_structs);
     
     for($i = 0 ; $i < count($ass_structs[$stylesectionname]) ; $i++  ){
         if(count($ass_structs[$stylesectionname][$i]) <= 1) continue;
-
+// print "compair stylename ".$ass_structs[$stylesectionname][$i]['Name']." :  $stylename";
         if($ass_structs[$stylesectionname][$i]["Name"] === $stylename ){
             foreach( $style_struct as $key => $value ){
                 // print "key :$key value:$value \r\n";
 
                 if(array_key_exists($key,$ass_structs[$stylesectionname][$i])){
+                // print $ass_structs[$stylesectionname][$i][$key];
                     $ass_structs[$stylesectionname][$i][$key] = $value;
                 }
             }
-           // var_dump($ass_structs[$stylesectionname][$i]);
+//            var_dump($ass_structs[$stylesectionname]);
         }
     }
+    // var_dump($ass_structs);
     return $ass_structs;
 }
 
@@ -296,6 +298,85 @@ function mod_event($ass_structs, $stylename, $event_struct ){
         }
     }
     return $ass_structs;
+}
+
+/***
+$propertyarray
+ futistyle[] = array (
+    'PrimaryColour' => --,
+    'SecondaryColour' => --,
+    'OutlineColour' => --,
+    'BackColour' => --,
+    'Outline' => --,
+    'Shadow' => --,
+    'Ruby_Outline' => --,
+    'Ruby_Shadow' => --,
+    'blur' => '4',
+    'removeclip' => false,
+ );
+
+***/
+
+function gen_new_ass($ass_structs, $propertyarray){
+    $stylelist_main = array ("songInfo1", "Kanji1", "Kanji2", "Kanji3");
+    $stylelist_ruby = array ("songInfo2", "songInfo", "Ruby1", "Ruby2", "Ruby3");
+
+
+    $futicount = 0;
+        $tmp_ass_structs = $ass_structs;
+    foreach ($propertyarray as $changestyle) {
+        if($futicount == 0 ){
+            $style_footer = "";
+        }else {
+            $style_footer = '_uti'.$futicount;
+
+            foreach ($stylelist_main as $usestyle ){
+                $tmp_ass_structs = copy_style($tmp_ass_structs, $usestyle , $usestyle.$style_footer);
+                $tmp_ass_structs = copy_event($tmp_ass_structs, $usestyle , $usestyle.$style_footer);
+            }
+            foreach ($stylelist_ruby as $usestyle ){
+                $tmp_ass_structs = copy_style($tmp_ass_structs, $usestyle , $usestyle.$style_footer);
+                $tmp_ass_structs = copy_event($tmp_ass_structs, $usestyle , $usestyle.$style_footer);
+            }
+        }
+        
+        foreach ($stylelist_main as $usestyle ){
+            $tmp_ass_structs = mod_style($tmp_ass_structs, $usestyle.$style_footer , $changestyle);
+        }
+        
+        $changestyle['Outline'] = $changestyle['Ruby_Outline'];
+        $changestyle['Shadow'] =  $changestyle['Ruby_Shadow'];
+
+        foreach ($stylelist_ruby as $usestyle ){
+            $tmp_ass_structs = mod_style($tmp_ass_structs, $usestyle.$style_footer , $changestyle);
+        }
+        
+        if($changestyle['blur'] >= 0 ){
+            $blurstr = '{\\blur'.$changestyle['blur'].'}';
+            //外縁ブラー化
+            foreach ($stylelist_main as $usestyle ){
+                $tmp_ass_structs = mod_event_text($tmp_ass_structs, $usestyle.$style_footer , '/{\\\\blur\\d}/' , '');
+                $tmp_ass_structs = mod_event_text($tmp_ass_structs, $usestyle.$style_footer , '/^/' , $blurstr);
+            }
+            foreach ($stylelist_ruby as $usestyle ){
+                $tmp_ass_structs = mod_event_text($tmp_ass_structs, $usestyle.$style_footer , '/{\\\\blur\\d}/' , '');
+                $tmp_ass_structs = mod_event_text($tmp_ass_structs, $usestyle.$style_footer , '/^/' , $blurstr);
+            }
+        }
+        
+        if($changestyle['removeclip'] == true){
+            $preg = '/{\\\\t\(\d{1,},\d{1,},\\\\clip.+?\\\\clip.+?}/';
+            foreach ($stylelist_main as $usestyle ){
+                $tmp_ass_structs=mod_event_text($tmp_ass_structs, $usestyle.$style_footer , $preg , '');
+            }
+            foreach ($stylelist_ruby as $usestyle ){
+                $tmp_ass_structs=mod_event_text($tmp_ass_structs, $usestyle.$style_footer , $preg , '');
+            }            
+            
+        }
+        $futicount++;
+    }
+    return outputass($tmp_ass_structs);
 }
 
 

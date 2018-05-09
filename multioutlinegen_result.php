@@ -346,6 +346,59 @@ if(!empty($outbuf_mask)){
       </form>
     </div>
     
+<hr />
+    <div class="container">
+        <h2>パラメータ指定変換</h2>
+<?php
+$fn=$assbasename."_mod.ass";
+?>
+        <form enctype="multipart/form-data" action="assdownload.php" method="POST" >
+        <div class="form-group">
+            <input type="hidden" name="filename" value="<?php echo $fn; ?>" />
+            <input type="hidden" name="ass_structs_json" value='<?php echo urlencode(json_encode($ass_structs)); ?>' />
+        <div>
+            <label> 縁１(1番外側) </label>
+            <div class="form-group form-inline">
+                <label> 文字中色 </label>
+                <input class="" type="color" value="#ffffff" name="style[beforewp_color][]" />
+                <label> 縁色 </label>
+                <input class="" type="color" value="#ffffff" name="style[beforewpfuti_color][]" />
+                <label>縁サイズ</label> <input type="text" class="form-control" value="12" name="style[Outline][]" size="2" />
+                <label> 影色 </label>
+                <input class="" type="color" value="#ffffff" name="style[beforewpshadow_color][]" />
+                <label>影サイズ</label> <input type="text" class="form-control" value="0" name="style[Shadow][]" size="2" />
+                <label>ルビ縁サイズ</label> <input type="text" class="form-control" value="10" name="style[Ruby_Outline][]" size="2" />
+                <label>ルビ影サイズ</label> <input type="text" class="form-control" value="0" name="style[Ruby_Shadow][]" size="2" />
+                <label>ぼかし量</label> <input type="text" class="form-control" value="4" name="style[blur][]" size="2" />
+                <label class="checkbox-inline">
+                     <input type="checkbox" name="style[removeclip][]" value="1" /> ワイプ後（Clip削除）
+                </label>
+            </div>
+        </div>
+        <div>
+            <label> 縁２ </label>
+            <div class="form-group form-inline">
+                <label> 文字中色 </label>
+                <input class="" type="color" value="#ffffff" name="style[beforewp_color][]" />
+                <label> 縁色 </label>
+                <input class="" type="color" value="#000000" name="style[beforewpfuti_color][]" />
+                <label>縁サイズ</label> <input type="text" class="form-control" value="6" name="style[Outline][]" size="2" />
+                <label> 影色 </label>
+                <input class="" type="color" value="#000000" name="style[beforewpshadow_color][]" />
+                <label>影サイズ</label> <input type="text" class="form-control" value="2" name="style[Shadow][]" size="2" />
+                <label>ルビ縁サイズ</label> <input type="text" class="form-control" value="4" name="style[Ruby_Outline][]" size="2" />
+                <label>ルビ影サイズ</label> <input type="text" class="form-control" value="1" name="style[Ruby_Shadow][]" size="2" />
+                <label>ぼかし量</label> <input type="text" class="form-control" value="0" name="style[blur][]" size="2" />
+                <label class="checkbox-inline">
+                     <input type="checkbox" name="style[removeclip][]" value="1" /> ワイプ後（Clip削除）
+                </label>
+            </div>
+        </div>
+            
+            <button type="submit" class="btn btn-default">ダウンロード</button>
+        </div>
+        </form>
+    </div>
 
     
   </body>
