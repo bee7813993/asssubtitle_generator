@@ -379,6 +379,14 @@ function gen_new_ass($ass_structs, $propertyarray){
     return outputass($tmp_ass_structs);
 }
 
+function colorhtml2ass($colorcode){
+    $asscode = $colorcode;
+    if(substr($colorcode, 0, 1) === '#'){
+       $asscode = '&H00'.substr($colorcode, 5, 2).substr($colorcode, 3, 2).substr($colorcode, 1, 2);
+    }
+    return $asscode;
+}
+
 
 /***
 memo ass変更情報

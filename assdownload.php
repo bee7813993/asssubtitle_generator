@@ -20,10 +20,10 @@
 
       for($i = 0; $i < count($style['beforewp_color']); $i++){
           $onestyle = array (
-           'PrimaryColour' => $style['beforewp_color'][$i],
-           'SecondaryColour' => $style['beforewp_color'][$i],
-           'OutlineColour' =>$style['beforewpfuti_color'][$i],
-           'BackColour' => $style['beforewpshadow_color'][$i],
+           'PrimaryColour' => colorhtml2ass($style['beforewp_color'][$i]),
+           'SecondaryColour' => colorhtml2ass($style['beforewp_color'][$i]),
+           'OutlineColour' => colorhtml2ass($style['beforewpfuti_color'][$i]),
+           'BackColour' => colorhtml2ass($style['beforewpshadow_color'][$i]),
            'Outline' => $style['Outline'][$i],
            'Shadow' => $style['Shadow'][$i],
            'Ruby_Outline' => $style['Ruby_Outline'][$i],
